@@ -1,0 +1,36 @@
+
+NotebookLM Clone - Setup Instructions
+====================================
+
+QUICK START:
+1. Make sure Python 3.8+ is installed on your system
+2. Double-click the appropriate launcher for your system:
+   - Windows: Start_NotebookLM_Clone.bat
+   - Linux/Mac: Start_NotebookLM_Clone.sh
+
+FIRST TIME SETUP:
+1. Install Python dependencies:
+   - Open terminal/command prompt in the app/notebooklm_app folder
+   - Run: pip install -r requirements.txt
+
+2. Install system dependencies (Linux/Mac):
+   - sudo apt install ffmpeg (Ubuntu/Debian)
+   - brew install ffmpeg (Mac with Homebrew)
+
+3. For Windows users:
+   - Download ffmpeg from https://ffmpeg.org/download.html
+   - Add ffmpeg to your system PATH
+
+USAGE:
+- The application will start a web server on http://localhost:12000
+- Your browser should open automatically
+- Upload documents, paste URLs, or enter text to generate audio overviews
+- Generated audio files can be played in the browser or downloaded
+
+TROUBLESHOOTING:
+- If models are missing, download them from:
+  https://myshell-public-repo-hosting.s3.amazonaws.com/openvoice/checkpoints_v1_0509.zip
+- Extract to app/openvoice/checkpoints/
+- Check app/notebooklm_app/app.log for error messages
+
+For detailed documentation, see README.md

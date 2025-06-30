@@ -1,0 +1,6 @@
+@echo off
+echo Installing GUI dependencies...
+python -m pip install requests --quiet
+echo Starting Desktop App...
+python "🖥️ Desktop App.py"
+pause

@@ -1,0 +1,36 @@
+
+🎵 NotebookLM Clone - Quick Setup Guide
+======================================
+
+SUPER SIMPLE SETUP (2 clicks):
+1. Double-click "🚀 Install and Run.py" (or .bat on Windows)
+2. Wait for setup to complete and enjoy!
+
+WHAT HAPPENS:
+• Downloads AI models (one-time, ~500MB)
+• Installs required software packages
+• Starts the application automatically
+• Opens your web browser to the app
+
+AFTER FIRST SETUP:
+• Use "⚡ Quick Start.py" for faster startup
+• Or run "🚀 Install and Run.py" anytime
+
+REQUIREMENTS:
+• Python 3.8+ (download from python.org if needed)
+• Internet connection (for initial setup only)
+• 4GB RAM, 2GB disk space
+
+FEATURES:
+✅ Upload PDF, Word docs, text files
+✅ Extract content from web URLs  
+✅ Generate natural audio overviews
+✅ Download audio for offline listening
+✅ Completely private - works offline
+
+TROUBLESHOOTING:
+• Windows: If nothing happens, install Python from python.org
+• Mac/Linux: Use Terminal if double-click doesn't work
+• Check "Technical_Documentation.md" for details
+
+That's it! No technical knowledge needed. 🎧
