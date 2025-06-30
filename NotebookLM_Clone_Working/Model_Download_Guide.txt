@@ -1,0 +1,50 @@
+
+🎙️ Audio Model Setup Guide
+==========================
+
+CURRENT STATUS:
+The official OpenVoice model download links are currently unavailable.
+This application works in text-only mode until models can be obtained.
+
+WHAT YOU GET WITHOUT MODELS:
+✅ Complete text processing and summarization
+✅ Document analysis and content extraction
+✅ Web URL content processing
+✅ File upload and processing (PDF, Word, text)
+✅ Intelligent text summaries
+
+WHAT REQUIRES MODELS:
+❌ Audio generation (text-to-speech)
+❌ Voice synthesis
+❌ Audio file output
+
+ALTERNATIVE SOLUTIONS:
+
+1. Use Built-in Text-to-Speech:
+   • Windows: Copy text and use Narrator
+   • Mac: Copy text and use VoiceOver
+   • Linux: Use espeak or festival
+
+2. Online TTS Services:
+   • Copy generated summaries to Google Translate
+   • Use browser read-aloud extensions
+   • Try online TTS websites
+
+3. Manual Model Installation (Advanced):
+   If you can obtain OpenVoice models from other sources:
+   
+   a) Create folder: openvoice/checkpoints/
+   b) Place model files in appropriate subfolders
+   c) Restart the application
+   d) Audio generation should become available
+
+FUTURE UPDATES:
+We're monitoring for when official model downloads become available again.
+The application will be updated when new download sources are found.
+
+RECOMMENDED WORKFLOW:
+1. Use this application for text processing and summarization
+2. Copy the generated text summaries
+3. Use your preferred TTS solution for audio conversion
+
+This provides the same end result with maximum reliability!

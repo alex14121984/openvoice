@@ -1,0 +1,87 @@
+
+🎵 NotebookLM Clone - User Guide
+===============================
+
+WHAT THIS IS:
+A working text-processing application that creates summaries and overviews
+of your documents, similar to Google's NotebookLM (but text-only).
+
+QUICK START:
+1. Double-click "Start_NotebookLM.py" (or .bat/.sh for your system)
+2. Wait for browser to open at http://localhost:12001
+3. Upload documents, paste URLs, or enter text
+4. Get instant text summaries and analysis
+
+FEATURES:
+✅ Process PDF, Word documents, and text files
+✅ Extract content from web URLs
+✅ Generate intelligent text summaries
+✅ Analyze document content and structure
+✅ Works completely offline (after setup)
+✅ No data sent to external servers
+
+SYSTEM REQUIREMENTS:
+• Python 3.8 or newer
+• 2GB RAM minimum
+• Internet connection (for initial setup only)
+• Windows 10+, macOS 10.14+, or Linux
+
+SUPPORTED FILE TYPES:
+• PDF documents (.pdf)
+• Microsoft Word documents (.docx)
+• Plain text files (.txt)
+• Web URLs (any website)
+• Direct text input
+
+HOW TO USE:
+
+1. Start the Application:
+   • Windows: Double-click "Start_NotebookLM.bat"
+   • Mac/Linux: Double-click "Start_NotebookLM.sh"
+   • Any system: Double-click "Start_NotebookLM.py"
+
+2. Choose Input Method:
+   • Direct Text: Paste text directly
+   • Website URL: Enter any web address
+   • File Upload: Upload PDF, Word, or text files
+
+3. Generate Overview:
+   • Click "Generate Overview"
+   • Get instant text analysis and summary
+   • Copy results for your own use
+
+ABOUT AUDIO GENERATION:
+This version provides text-only processing. Audio generation requires
+additional AI models that are currently unavailable for download.
+See "Model_Download_Guide.txt" for more information.
+
+TROUBLESHOOTING:
+
+Problem: "Python not found"
+Solution: Install Python from https://python.org
+
+Problem: Browser doesn't open
+Solution: Manually go to http://localhost:12001
+
+Problem: "Module not found" errors
+Solution: The launcher will install missing packages automatically
+
+Problem: File upload fails
+Solution: Try smaller files (under 10MB) or use text input instead
+
+Problem: URL processing fails
+Solution: Some websites block automated access - try copying text manually
+
+PRIVACY & SECURITY:
+• All processing happens on your computer
+• No data is sent to external servers
+• Your documents stay completely private
+• Works offline after initial setup
+
+GETTING HELP:
+• Check the console output for error messages
+• Try restarting the application
+• Use smaller files for testing
+• Make sure you have a stable internet connection for setup
+
+Enjoy your personal document processing tool! 📄

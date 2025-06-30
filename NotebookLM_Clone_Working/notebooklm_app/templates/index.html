@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM Clone - AI Audio Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .upload-section {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px dashed #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .upload-section:hover {
+            border-color: #4f46e5;
+            background: #f1f5f9;
+        }
+
+        .source-type-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .source-type-btn {
+            padding: 12px 24px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .source-type-btn.active {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+
+        .source-type-btn:hover {
+            border-color: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type=file] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 20px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .file-upload-label:hover {
+            border-color: #4f46e5;
+            background: #f8fafc;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            display: none;
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .results-section.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .audio-player {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .audio-player h3 {
+            margin-bottom: 15px;
+            color: #374151;
+        }
+
+        .audio-player audio {
+            width: 100%;
+        }
+
+        .summary-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .summary-box h3 {
+            margin-bottom: 15px;
+            color: #374151;
+        }
+
+        .text-preview {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .text-preview h3 {
+            margin-bottom: 15px;
+            color: #374151;
+        }
+
+        .text-preview p {
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .source-type-selector {
+                flex-direction: column;
+            }
+
+            .source-type-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎧 NotebookLM Clone</h1>
+            <p>Upload your content and get an AI-generated audio overview</p>
+        </div>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <form id="uploadForm">
+                    <div class="source-type-selector">
+                        <button type="button" class="source-type-btn active" data-type="url">📄 URL</button>
+                        <button type="button" class="source-type-btn" data-type="file">📁 File</button>
+                        <button type="button" class="source-type-btn" data-type="text">✏️ Text</button>
+                    </div>
+
+                    <div id="url-input" class="input-group">
+                        <label for="url">Enter URL:</label>
+                        <input type="url" id="url" name="url" placeholder="https://example.com/article">
+                    </div>
+
+                    <div id="file-input" class="input-group hidden">
+                        <label for="file">Upload Text File:</label>
+                        <div class="file-upload">
+                            <input type="file" id="file" name="file" accept=".txt">
+                            <label for="file" class="file-upload-label">
+                                📁 Click to select a .txt file or drag and drop
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="text-input" class="input-group hidden">
+                        <label for="text">Paste Text:</label>
+                        <textarea id="text" name="text" placeholder="Paste your text content here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        🎵 Generate Audio Overview
+                    </button>
+                </form>
+
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Generating your audio overview...</p>
+                </div>
+
+                <div class="error">
+                    <p id="error-message"></p>
+                </div>
+            </div>
+
+            <div class="results-section" id="results">
+                <div class="audio-player">
+                    <h3>🎧 Audio Overview</h3>
+                    <audio controls id="audioPlayer">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <a href="#" id="downloadBtn" class="download-btn" style="display: none; padding: 8px 16px; background: #6366f1; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">
+                            📥 Download Audio
+                        </a>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <h3>📝 Summary</h3>
+                    <p id="summary-text"></p>
+                </div>
+
+                <div class="text-preview">
+                    <h3>👀 Content Preview</h3>
+                    <p id="preview-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Source type switching
+        document.querySelectorAll('.source-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.source-type-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all input groups
+                document.querySelectorAll('#url-input, #file-input, #text-input').forEach(input => {
+                    input.classList.add('hidden');
+                });
+                
+                // Show selected input group
+                const type = this.dataset.type;
+                document.getElementById(`${type}-input`).classList.remove('hidden');
+            });
+        });
+
+        // File upload label update
+        document.getElementById('file').addEventListener('change', function() {
+            const label = document.querySelector('.file-upload-label');
+            if (this.files.length > 0) {
+                label.textContent = `📁 ${this.files[0].name}`;
+            } else {
+                label.textContent = '📁 Click to select a .txt file or drag and drop';
+            }
+        });
+
+        // Form submission
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const loading = document.querySelector('.loading');
+            const error = document.querySelector('.error');
+            const results = document.getElementById('results');
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Reset states
+            loading.classList.add('show');
+            error.classList.remove('show');
+            results.classList.remove('show');
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData();
+                
+                // Get active source type
+                const activeBtn = document.querySelector('.source-type-btn.active');
+                const sourceType = activeBtn.dataset.type;
+                formData.append('source_type', sourceType);
+                
+                // Add appropriate data based on source type
+                if (sourceType === 'url') {
+                    const url = document.getElementById('url').value;
+                    if (!url) {
+                        throw new Error('Please enter a URL');
+                    }
+                    formData.append('url', url);
+                } else if (sourceType === 'file') {
+                    const file = document.getElementById('file').files[0];
+                    if (!file) {
+                        throw new Error('Please select a file');
+                    }
+                    formData.append('file', file);
+                } else if (sourceType === 'text') {
+                    const text = document.getElementById('text').value;
+                    if (!text) {
+                        throw new Error('Please enter some text');
+                    }
+                    formData.append('text', text);
+                }
+                
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Something went wrong');
+                }
+                
+                // Show results
+                document.getElementById('audioPlayer').src = data.audio_url;
+                
+                // Update download button
+                const downloadBtn = document.getElementById('downloadBtn');
+                downloadBtn.href = data.audio_url.replace('/audio/', '/download/');
+                downloadBtn.style.display = 'inline-block';
+                
+                document.getElementById('summary-text').textContent = data.summary;
+                document.getElementById('preview-text').textContent = data.text_preview;
+                
+                results.classList.add('show');
+                
+            } catch (err) {
+                document.getElementById('error-message').textContent = err.message;
+                error.classList.add('show');
+            } finally {
+                loading.classList.remove('show');
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Drag and drop for file upload
+        const fileUpload = document.querySelector('.file-upload');
+        const fileInput = document.getElementById('file');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            fileUpload.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileUpload.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileUpload.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            fileUpload.classList.add('highlight');
+        }
+
+        function unhighlight(e) {
+            fileUpload.classList.remove('highlight');
+        }
+
+        fileUpload.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files.length > 0) {
+                fileInput.files = files;
+                const event = new Event('change', { bubbles: true });
+                fileInput.dispatchEvent(event);
+            }
+        }
+    </script>
+</body>
+</html>
