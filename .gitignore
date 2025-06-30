@@ -1,13 +1,71 @@
+# Python
 __pycache__/
-.ipynb_checkpoints/
-processed
-outputs
-outputs_v2
-checkpoints
-checkpoints_v2
-trash
-examples*
-.env
-build
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Application specific
+*.log
+static/audio/*.wav
+static/audio/*.mp3
+temp/
+uploads/
+
+# Browser screenshots and temporary files
+.browser_screenshots/
+*.tar.gz
+
+# Large model files (keep structure but ignore actual model files)
+openvoice/
+*.pth
+*.pt
+*.bin
 *.zip
+
+# Node modules (if any)
+node_modules/
+
+# Jupyter
+.ipynb_checkpoints/
