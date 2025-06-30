@@ -1,0 +1,22 @@
+# NotebookLM Clone - Core Dependencies
+# These are the minimum packages needed for basic functionality
+
+# Web framework
+flask>=2.0.0
+
+# Web scraping and parsing
+beautifulsoup4>=4.9.0
+requests>=2.25.0
+
+# Document processing
+PyPDF2>=2.0.0
+python-docx>=0.8.0
+
+# Basic data processing
+numpy>=1.20.0
+
+# Optional: AI and audio processing (for full functionality)
+# Uncomment these lines if you want audio generation:
+# torch>=1.9.0
+# librosa>=0.8.0
+# scipy>=1.7.0

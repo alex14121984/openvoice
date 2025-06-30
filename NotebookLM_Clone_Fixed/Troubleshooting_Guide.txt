@@ -1,0 +1,105 @@
+
+NotebookLM Clone - Troubleshooting Guide
+=======================================
+
+COMMON ISSUES AND SOLUTIONS:
+
+1. "No module named 'bs4'" Error
+   SOLUTION: 
+   - Run: pip install beautifulsoup4
+   - Or use the installer: python Install_NotebookLM.py
+
+2. "Python not found" Error
+   SOLUTION:
+   - Install Python 3.8+ from https://python.org
+   - During installation, check "Add Python to PATH"
+   - Restart your computer after installation
+
+3. Batch file shows strange characters
+   SOLUTION:
+   - Use Start_NotebookLM.py instead of .bat files
+   - Or run: python Install_NotebookLM.py
+
+4. "Port already in use" Error
+   SOLUTION:
+   - Close any other applications using port 12000
+   - Or restart your computer
+
+5. Audio generation not working
+   SOLUTION:
+   - Run the full installer: python Install_NotebookLM.py
+   - Make sure AI models are downloaded
+   - Check that openvoice/checkpoints folder exists
+
+6. Browser doesn't open automatically
+   SOLUTION:
+   - Manually go to: http://localhost:12000
+   - Make sure no firewall is blocking the connection
+
+7. "Permission denied" errors
+   SOLUTION:
+   - Run as administrator (Windows) or with sudo (Linux/Mac)
+   - Or install packages with --user flag
+
+8. Slow performance
+   SOLUTION:
+   - Close other applications
+   - Ensure you have at least 4GB free RAM
+   - Use smaller documents for testing
+
+9. Installation hangs or freezes
+   SOLUTION:
+   - Check your internet connection
+   - Try installing packages one by one:
+     pip install flask
+     pip install beautifulsoup4
+     pip install requests
+
+10. "Module not found" after installation
+    SOLUTION:
+    - Try: python -m pip install --user [package_name]
+    - Or: pip3 install [package_name]
+    - Restart your terminal/command prompt
+
+STEP-BY-STEP TROUBLESHOOTING:
+
+If nothing works, try this sequence:
+
+1. Check Python:
+   python --version
+   (Should show 3.8 or higher)
+
+2. Install basic packages:
+   python -m pip install flask beautifulsoup4 requests
+
+3. Test basic functionality:
+   python -c "import flask; print('Flask OK')"
+   python -c "from bs4 import BeautifulSoup; print('BS4 OK')"
+
+4. Run the application:
+   cd notebooklm_app
+   python app.py
+
+5. Open browser manually:
+   Go to http://localhost:12000
+
+GETTING HELP:
+
+If you're still having issues:
+1. Check the app.log file in notebooklm_app folder
+2. Note the exact error message
+3. Check your Python version: python --version
+4. Check installed packages: pip list
+
+SYSTEM REQUIREMENTS:
+- Python 3.8 or newer
+- 4GB RAM minimum
+- 2GB free disk space
+- Internet connection (for initial setup)
+- Windows 10+, macOS 10.14+, or Linux
+
+Remember: The application works in two modes:
+- Basic mode: Text processing only (smaller download)
+- Full mode: Text + AI audio generation (larger download)
+
+Both modes provide useful functionality!
